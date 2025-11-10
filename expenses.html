@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-hashes'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data:; connect-src 'self';">
+    <title>المصاريف التشغيلية - نظام أسيل</title>
+    <link rel="stylesheet" href="styles/expenses.css">
+    <link rel="stylesheet" href="styles/topbar.css">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <!-- Sticky Top Bar -->
+    <div class="top-bar">
+        <button class="top-bar-sidebar-toggle" id="topBarSidebarToggle" title="إخفاء/إظهار القائمة الجانبية">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+
+        <div class="top-bar-time" id="topBarTime">
+            <span style="font-size: 12px;">🕐</span> --:--:--
+        </div>
+
+        <div class="top-bar-notifications" id="topBarNotificationsBtn" title="الإشعارات">
+            <img src="assets/bell.ico" alt="الإشعارات" />
+            <span class="notification-badge" id="notificationBadge" style="display: none;">0</span>
+
+            <!-- Notifications Popup - Directly under button -->
+            <div class="notifications-popup" id="notificationsPopup">
+                <div class="popup-header">
+                    <h3>الإشعارات</h3>
+                    <button class="close-popup-btn" id="closeNotificationsBtn">&times;</button>
+                </div>
+                <div class="popup-content">
+                    <div class="notifications-section">
+                        <h4>📦 المخزون المنخفض / نفد المخزون</h4>
+                        <div class="notifications-list" id="lowStockNotifications">
+                            <div class="notification-item loading">جارٍ التحميل...</div>
+                        </div>
+                    </div>
+                    <div class="notifications-section">
+                        <h4>👥 عملاء رصيدهم يتخطى 10,000 ج.م</h4>
+                        <div class="notifications-list" id="highBalanceNotifications">
+                            <div class="notification-item loading">جارٍ التحميل...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a href="calculator.html" class="top-bar-calculator" title="آلة حاسبة">
+            <img src="assets/calculator-app-icon.ico" alt="آلة حاسبة" />
+        </a>
+
+        <div class="top-bar-user-greeting" id="topBarUserGreeting" style="display: none;">
+            <img src="assets/user_10542498.ico" alt="User" class="user-icon" />
+            <span class="greeting-text">مرحبًا، <strong id="topBarUsername">مستخدم</strong></span>
+        </div>
+
+        <button class="top-bar-logout" id="topBarLogoutBtn" title="تسجيل الخروج">
+            <img src="assets/switch.ico" alt="تسجيل الخروج" />
+        </button>
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">أسيل</div>
+            <p class="system-name">نظام إدارة الشركة</p>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="index.html"><span class="icon">🏠</span> الشاشة الرئيسية</a></li>
+            <li><a href="products.html"><span class="icon">📦</span> المنتجات</a></li>
+            <li><a href="customers.html"><span class="icon">👥</span> العملاء</a></li>
+            <li><a href="suppliers.html"><span class="icon">🏢</span> الموردين</a></li>
+            <li><a href="sales.html"><span class="icon">💰</span> المبيعات</a></li>
+            <li><a href="delivery-notes.html"><span class="icon">📋</span> أذون الصرف</a></li>
+            <li><a href="settlements.html"><span class="icon">✅</span> التسويات</a></li>
+            <li><a href="receipts.html"><span class="icon">💵</span> سندات القبض</a></li>
+            <li><a href="payments.html"><span class="icon">💸</span> سندات الصرف</a></li>
+            <li><a href="purchases.html"><span class="icon">🛒</span> المشتريات</a></li>
+            <li><a href="inventory.html"><span class="icon">📝</span> إدارة الجرد والمرتجعات</a></li>
+            <li><a href="assets.html"><span class="icon">🏛️</span> أصول الشركة</a></li>
+            <li><a href="reports.html"><span class="icon">📊</span> حساب الأرباح</a></li>
+            <li><a href="expenses.html" class="active"><span class="icon">💼</span> المصاريف التشغيلية</a></li>
+            <li><a href="backup.html"><span class="icon">💾</span> النسخ الاحتياطي</a></li>
+            <li><a href="action-logs.html"><span class="icon">📋</span> سجل الحركات</a></li>
+            <li><a href="users.html"><span class="icon">👤</span> إدارة المستخدمين والصلاحيات</a></li>
+            <li><a href="settings.html"><span class="icon">⚙️</span> الإعدادات</a></li>
+            <li><a href="about.html"><span class="icon">🧊</span> عن الشركة</a></li>
+            <li><a href="marketing.html"><span class="icon">📢</span> العرض التسويقي</a></li>
+            <li class="logout-item">
+                <button class="logout-btn" title="تسجيل الخروج">
+                    <img src="assets/logout-16.ico" alt="تسجيل الخروج" class="icon">
+                    <span>تسجيل الخروج</span>
+                </button>
+            </li>
+        </ul>
+        <div class="sidebar-footer">
+            <p class="copyright-text">© 2025 نظام أسيل — تم التطوير بواسطة المهندس محمد محسن. جميع الحقوق محفوظة.</p>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="content-header">
+            <h1>المصاريف التشغيلية</h1>
+            <button class="btn btn-primary" id="newExpenseBtn">
+                <span>+</span> مصروف جديد
+            </button>
+        </div>
+
+        <!-- Search & Filters Section -->
+        <div class="filters-section">
+            <div class="search-group">
+                <input type="text" id="searchInput" class="search-input" placeholder="🔍 البحث بنوع المصروف أو الوصف...">
+                <button type="button" id="clearSearchBtn" class="btn-clear" title="مسح البحث">✕</button>
+            </div>
+            <div class="date-filter-group">
+                <label>من تاريخ:</label>
+                <input type="date" id="dateFrom" class="date-input">
+            </div>
+            <div class="date-filter-group">
+                <label>إلى تاريخ:</label>
+                <input type="date" id="dateTo" class="date-input">
+            </div>
+            <div class="category-filter-group">
+                <label>نوع المصروف:</label>
+                <select id="expenseTypeFilter" class="category-select">
+                    <option value="">جميع الأنواع</option>
+                    <option value="salaries">مرتبات</option>
+                    <option value="operational">مصاريف تشغيل</option>
+                </select>
+            </div>
+            <div class="category-filter-group" id="operationalCategoryFilterRow" style="display: none;">
+                <label>نوع المصروف التشغيلي:</label>
+                <select id="categoryFilter" class="category-select">
+                    <option value="">جميع الأنواع التشغيلية</option>
+                    <option value="car">مصاريف تشغيل سيارة</option>
+                    <option value="shipping">شحن</option>
+                    <option value="rent">إيجار</option>
+                    <option value="electricity">كهرباء</option>
+                    <option value="internet">إنترنت</option>
+                    <option value="packaging">تغليف</option>
+                    <option value="maintenance">صيانة</option>
+                    <option value="other">مصروفات أخرى</option>
+                </select>
+            </div>
+            <div class="sort-group">
+                <label>الترتيب:</label>
+                <select id="sortBy" class="sort-select">
+                    <option value="date-desc">أحدث تاريخ (الأحدث أولاً)</option>
+                    <option value="date-asc">أقدم تاريخ (الأقدم أولاً)</option>
+                    <option value="amount-desc">أكبر مبلغ (تنازلي)</option>
+                    <option value="amount-asc">أصغر مبلغ (تصاعدي)</option>
+                </select>
+            </div>
+            <button type="button" id="clearFiltersBtn" class="btn btn-secondary">مسح الفلاتر</button>
+        </div>
+
+        <!-- Expenses List -->
+        <div class="table-container">
+            <table class="expenses-table">
+                <thead>
+                    <tr>
+                        <th>التاريخ</th>
+                        <th>نوع المصروف</th>
+                        <th>المبلغ</th>
+                        <th>لمن صرف له</th>
+                        <th>الوصف</th>
+                        <th>الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody id="expensesTableBody">
+                    <!-- Expenses will be loaded here -->
+                </tbody>
+            </table>
+            <div class="empty-state hidden" id="emptyState">
+                <p>لا توجد مصروفات</p>
+                <button class="btn btn-primary" id="emptyStateAddBtn">
+                    إضافة مصروف جديد
+                </button>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination-container hidden" id="paginationContainer">
+            <div class="pagination-info">
+                <span id="paginationInfo">عرض 0 - 0 من 0</span>
+            </div>
+            <div class="pagination-controls">
+                <button type="button" id="prevPageBtn" class="btn btn-secondary" disabled>← السابق</button>
+                <span class="page-numbers" id="pageNumbers"></span>
+                <button type="button" id="nextPageBtn" class="btn btn-secondary" disabled>التالي →</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Expense Modal -->
+    <div class="modal" id="expenseModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">مصروف جديد</h2>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <form id="expenseForm" class="expense-form">
+                <input type="hidden" id="expenseId" name="expenseId">
+                <input type="hidden" id="isEdit" name="isEdit" value="false">
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="expenseDate">التاريخ <span class="required">*</span></label>
+                        <input type="date" id="expenseDate" name="expenseDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="expenseType">نوع المصروف <span class="required">*</span></label>
+                        <select id="expenseType" name="expenseType" required>
+                            <option value="">اختر نوع المصروف</option>
+                            <option value="salaries">مرتبات</option>
+                            <option value="operational">مصاريف تشغيل</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row" id="operationalCategoryRow" style="display: none;">
+                    <div class="form-group">
+                        <label for="expenseCategory">نوع المصروف التشغيلي <span class="required">*</span></label>
+                        <select id="expenseCategory" name="expenseCategory">
+                            <option value="">اختر نوع المصروف التشغيلي</option>
+                            <option value="car">مصاريف تشغيل سيارة</option>
+                            <option value="shipping">شحن</option>
+                            <option value="rent">إيجار</option>
+                            <option value="electricity">كهرباء</option>
+                            <option value="internet">إنترنت</option>
+                            <option value="packaging">تغليف</option>
+                            <option value="maintenance">صيانة</option>
+                            <option value="other">مصروفات أخرى</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="expenseAmount">المبلغ <span class="required">*</span></label>
+                        <input type="number" id="expenseAmount" name="expenseAmount" min="0" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipientName">اسم المستلم <span class="required">*</span></label>
+                        <input type="text" id="recipientName" name="recipientName" placeholder="اسم المستلم" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="expenseDescription">الوصف / الغرض</label>
+                        <textarea id="expenseDescription" name="expenseDescription" rows="3" placeholder="وصف المصروف أو الغرض"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">حفظ</button>
+                    <button type="button" class="btn btn-secondary" id="cancelBtn">إلغاء</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="scripts/header.js"></script>
+    <script src="scripts/toast.js"></script>
+    <script src="scripts/permissions.js"></script>
+    <script src="scripts/sidebar.js"></script>
+    <script src="scripts/logout.js"></script>
+    <script src="scripts/expenses.js"></script>
+</body>
+</html>
+

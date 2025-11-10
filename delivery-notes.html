@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-hashes'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self';">
+    <title>أذون الصرف - نظام أسيل</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Lateef:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/sales.css">
+    <link rel="stylesheet" href="styles/topbar.css">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <!-- Sticky Top Bar -->
+    <div class="top-bar">
+        <button class="top-bar-sidebar-toggle" id="topBarSidebarToggle" title="إخفاء/إظهار القائمة الجانبية">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+
+        <div class="top-bar-time" id="topBarTime">
+            <span style="font-size: 12px;">🕐</span> --:--:--
+        </div>
+
+        <div class="top-bar-notifications" id="topBarNotificationsBtn" title="الإشعارات">
+            <img src="assets/bell.ico" alt="الإشعارات" />
+            <span class="notification-badge" id="notificationBadge" style="display: none;">0</span>
+
+            <!-- Notifications Popup - Directly under button -->
+            <div class="notifications-popup" id="notificationsPopup">
+                <div class="popup-header">
+                    <h3>الإشعارات</h3>
+                    <button class="close-popup-btn" id="closeNotificationsBtn">&times;</button>
+                </div>
+                <div class="popup-content">
+                    <div class="notifications-section">
+                        <h4>📦 المخزون المنخفض / نفد المخزون</h4>
+                        <div class="notifications-list" id="lowStockNotifications">
+                            <div class="notification-item loading">جارٍ التحميل...</div>
+                        </div>
+                    </div>
+                    <div class="notifications-section">
+                        <h4>👥 عملاء رصيدهم يتخطى 10,000 ج.م</h4>
+                        <div class="notifications-list" id="highBalanceNotifications">
+                            <div class="notification-item loading">جارٍ التحميل...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a href="calculator.html" class="top-bar-calculator" title="آلة حاسبة">
+            <img src="assets/calculator-app-icon.ico" alt="آلة حاسبة" />
+        </a>
+
+        <div class="top-bar-user-greeting" id="topBarUserGreeting" style="display: none;">
+            <img src="assets/user_10542498.ico" alt="User" class="user-icon" />
+            <span class="greeting-text">مرحبًا، <strong id="topBarUsername">مستخدم</strong></span>
+        </div>
+
+        <button class="top-bar-logout" id="topBarLogoutBtn" title="تسجيل الخروج">
+            <img src="assets/switch.ico" alt="تسجيل الخروج" />
+        </button>
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">أسيل</div>
+            <p class="system-name">نظام إدارة الشركة</p>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="index.html"><span class="icon">🏠</span> الشاشة الرئيسية</a></li>
+            <li><a href="products.html"><span class="icon">📦</span> المنتجات</a></li>
+            <li><a href="customers.html"><span class="icon">👥</span> العملاء</a></li>
+            <li><a href="suppliers.html"><span class="icon">🏢</span> الموردين</a></li>
+            <li><a href="sales.html"><span class="icon">💰</span> المبيعات</a></li>
+            <li><a href="delivery-notes.html" class="active"><span class="icon">📋</span> أذون الصرف</a></li>
+            <li><a href="settlements.html"><span class="icon">✅</span> التسويات</a></li>
+            <li><a href="receipts.html"><span class="icon">💵</span> سندات القبض</a></li>
+            <li><a href="payments.html"><span class="icon">💸</span> سندات الصرف</a></li>
+            <li><a href="purchases.html"><span class="icon">🛒</span> المشتريات</a></li>
+            <li><a href="inventory.html"><span class="icon">📝</span> إدارة الجرد والمرتجعات</a></li>
+            <li><a href="assets.html"><span class="icon">🏛️</span> أصول الشركة</a></li>
+            <li><a href="reports.html"><span class="icon">📊</span> حساب الأرباح</a></li>
+            <li><a href="expenses.html"><span class="icon">💼</span> المصاريف التشغيلية</a></li>
+            <li><a href="backup.html"><span class="icon">💾</span> النسخ الاحتياطي</a></li>
+            <li><a href="action-logs.html"><span class="icon">📋</span> سجل الحركات</a></li>
+            <li><a href="users.html"><span class="icon">👤</span> إدارة المستخدمين والصلاحيات</a></li>
+            <li><a href="settings.html"><span class="icon">⚙️</span> الإعدادات</a></li>
+            <li><a href="about.html"><span class="icon">🧊</span> عن الشركة</a></li>
+            <li><a href="marketing.html"><span class="icon">📢</span> العرض التسويقي</a></li>
+            <li class="logout-item">
+                <button class="logout-btn" title="تسجيل الخروج">
+                    <img src="assets/logout-16.ico" alt="تسجيل الخروج" class="icon">
+                    <span>تسجيل الخروج</span>
+                </button>
+            </li>
+        </ul>
+        <div class="sidebar-footer">
+            <p class="copyright-text">© 2025 نظام أسيل — تم التطوير بواسطة المهندس محمد محسن. جميع الحقوق محفوظة.</p>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="content-header">
+            <h1>أذون الصرف</h1>
+            <button class="btn btn-primary" id="newNoteBtn">
+                <span>+</span> إذن صرف جديد
+            </button>
+        </div>
+
+        <!-- Search & Filters Section -->
+        <div class="filters-section">
+            <div class="search-group">
+                <input type="text" id="searchInput" class="search-input" placeholder="🔍 البحث برقم إذن الصرف أو اسم أمين المخزن...">
+                <button type="button" id="clearSearchBtn" class="btn-clear" title="مسح البحث">✕</button>
+            </div>
+            <div class="date-filter-group">
+                <label>من تاريخ:</label>
+                <input type="date" id="dateFrom" class="date-input">
+            </div>
+            <div class="date-filter-group">
+                <label>إلى تاريخ:</label>
+                <input type="date" id="dateTo" class="date-input">
+            </div>
+            <div class="status-filter-group">
+                <label>الحالة:</label>
+                <select id="statusFilter" class="status-select">
+                    <option value="">جميع الحالات</option>
+                    <option value="issued">صادر</option>
+                    <option value="settled">تم التسوية</option>
+                </select>
+            </div>
+            <button type="button" id="clearFiltersBtn" class="btn btn-secondary">مسح الفلاتر</button>
+        </div>
+
+        <!-- Notes List -->
+        <div class="table-container">
+            <table class="invoices-table">
+                <thead>
+                    <tr>
+                        <th>رقم إذن الصرف</th>
+                        <th>التاريخ</th>
+                        <th>أمين المخزن / التلاجة</th>
+                        <th>عدد المنتجات</th>
+                        <th>الحالة</th>
+                        <th>الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody id="notesTableBody">
+                    <!-- Notes will be loaded here -->
+                </tbody>
+            </table>
+            <div class="empty-state hidden" id="emptyState">
+                <p>لا توجد أذون صرف</p>
+                <button class="btn btn-primary" id="emptyStateAddBtn">
+                    إنشاء إذن صرف جديد
+                </button>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination-container hidden" id="paginationContainer">
+            <div class="pagination-info">
+                <span id="paginationInfo">عرض 0 - 0 من 0</span>
+            </div>
+            <div class="pagination-controls">
+                <button type="button" id="prevPageBtn" class="btn btn-secondary" disabled>← السابق</button>
+                <span class="page-numbers" id="pageNumbers"></span>
+                <button type="button" id="nextPageBtn" class="btn btn-secondary" disabled>التالي →</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="scripts/sidebar.js"></script>
+    <script src="scripts/permissions.js"></script>
+    <script src="scripts/toast.js"></script>
+    <script src="scripts/logout.js"></script>
+
+    <!-- Note Modal -->
+    <div class="modal" id="noteModal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2 id="modalTitle">إذن صرف جديد</h2>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <form id="noteForm" class="invoice-form">
+                <input type="hidden" id="noteId" name="noteId">
+                <input type="hidden" id="isEdit" name="isEdit" value="false">
+
+                <!-- Basic Info -->
+                <div class="form-section">
+                    <h3>بيانات إذن الصرف</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="noteDate">التاريخ <span class="required">*</span></label>
+                            <input type="date" id="noteDate" name="noteDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="warehouseKeeperName">اسم أمين المخزن / التلاجة <span class="required">*</span></label>
+                            <input type="text" id="warehouseKeeperName" name="warehouseKeeperName" required placeholder="أدخل اسم أمين المخزن أو التلاجة">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Products Section -->
+                <div class="form-section">
+                    <h3>المنتجات</h3>
+                    <div class="add-product-section">
+                        <div class="product-search-wrapper">
+                            <input type="text" id="productSearch" placeholder="ابحث عن منتج (اسم أو صنف)..." autocomplete="off">
+                            <input type="hidden" id="productSelect" value="">
+                            <div class="product-dropdown" id="productDropdown"></div>
+                        </div>
+                        <input type="number" id="productQuantity" placeholder="الكمية" min="0.01" step="0.01">
+                        <select id="productUnit">
+                            <option value="smallest">أصغر وحدة</option>
+                            <option value="largest">أكبر وحدة</option>
+                        </select>
+                        <button type="button" class="btn btn-primary" id="addProductBtn">إضافة</button>
+                    </div>
+                    <div class="products-list">
+                        <table class="invoice-products-table">
+                            <thead>
+                                <tr>
+                                    <th>اسم المنتج</th>
+                                    <th>الكمية</th>
+                                    <th>الوحدة</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="noteProductsBody">
+                                <!-- Products will be added here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Notes -->
+                <div class="form-section">
+                    <div class="form-group">
+                        <label for="notes">ملاحظات</label>
+                        <textarea id="notes" name="notes" rows="3" placeholder="أي ملاحظات إضافية..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">حفظ</button>
+                    <button type="button" class="btn btn-secondary" id="cancelBtn">إلغاء</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="scripts/header.js"></script>
+    <script src="scripts/sidebar.js"></script>
+    <script src="scripts/logout.js"></script>
+    <script src="scripts/delivery-notes.js"></script>
+</body>
+</html>
+
