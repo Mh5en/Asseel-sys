@@ -1,0 +1,66 @@
+<svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2a1810;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a0a05;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Gradient for the underline -->
+    <linearGradient id="afterLineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FF8C00;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#FF4500;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#DC143C;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Glow effects -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <filter id="strongGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="5" result="blur1"/>
+      <feGaussianBlur stdDeviation="10" result="blur2"/>
+      <feMerge>
+        <feMergeNode in="blur2"/>
+        <feMergeNode in="blur1"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <filter id="lineGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Circular background -->
+  <circle cx="90" cy="90" r="90" fill="url(#bgGradient)"/>
+  
+  <!-- Arabic text "أسيل" with glow layers -->
+  <text x="90" y="105" font-family="'Lateef', 'Amiri', 'Arial', serif" font-size="65" 
+        font-weight="700" fill="#FF8C00" text-anchor="middle" 
+        letter-spacing="1" style="filter: url(#strongGlow)">أسيل</text>
+  
+  <text x="90" y="105" font-family="'Lateef', 'Amiri', 'Arial', serif" font-size="65" 
+        font-weight="700" fill="#FF8C00" text-anchor="middle" 
+        letter-spacing="1" opacity="0.6" style="filter: url(#glow)">أسيل</text>
+  
+  <!-- Main text -->
+  <text x="90" y="105" font-family="'Lateef', 'Amiri', 'Arial', serif" font-size="65" 
+        font-weight="700" fill="#FF8C00" text-anchor="middle" 
+        letter-spacing="1">أسيل</text>
+  
+  <!-- Decorative underline -->
+  <rect x="55" y="120" width="70" height="2.5" rx="1.5" 
+        fill="url(#afterLineGradient)" 
+        style="filter: url(#lineGlow)"/>
+</svg>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-hashes'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self';">
+    <title>عن الشركة - نظام أسيل</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Lateef:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/about.css">
+    <link rel="stylesheet" href="styles/topbar.css">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <!-- Sticky Top Bar -->
+    <div class="top-bar">
+        <button class="top-bar-sidebar-toggle" id="topBarSidebarToggle" title="إخفاء/إظهار القائمة الجانبية">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+
+        <div class="top-bar-time" id="topBarTime">
+            <span style="font-size: 12px;">🕐</span> --:--:--
+        </div>
+
+        <div class="top-bar-notifications" id="topBarNotificationsBtn" title="الإشعارات">
+            <img src="assets/bell.ico" alt="الإشعارات" />
+            <span class="notification-badge" id="notificationBadge" style="display: none;">0</span>
+
+            <!-- Notifications Popup - Directly under button -->
+            <div class="notifications-popup" id="notificationsPopup">
+                <div class="popup-header">
+                    <h3>الإشعارات</h3>
+                    <button class="close-popup-btn" id="closeNotificationsBtn">&times;</button>
+                </div>
+                <div class="popup-content">
+                    <div class="notifications-section">
+                        <h4>📦 المخزون المنخفض / نفد المخزون</h4>
+                        <div class="notifications-list" id="lowStockNotifications">
+                            <div class="notification-item loading">جارٍ التحميل...</div>
+                        </div>
+                    </div>
+                    <div class="notifications-section">
+                        <h4>👥 عملاء رصيدهم يتخطى 10,000 ج.م</h4>
+                        <div class="notifications-list" id="highBalanceNotifications">
+                            <div class="notification-item loading">جارٍ التحميل...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a href="calculator.html" class="top-bar-calculator" title="آلة حاسبة">
+            <img src="assets/calculator-app-icon.ico" alt="آلة حاسبة" />
+        </a>
+
+        <div class="top-bar-user-greeting" id="topBarUserGreeting" style="display: none;">
+            <img src="assets/user_10542498.ico" alt="User" class="user-icon" />
+            <span class="greeting-text">مرحبًا، <strong id="topBarUsername">مستخدم</strong></span>
+        </div>
+
+        <button class="top-bar-logout" id="topBarLogoutBtn" title="تسجيل الخروج">
+            <img src="assets/switch.ico" alt="تسجيل الخروج" />
+        </button>
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">أسيل</div>
+            <p class="system-name">نظام إدارة الشركة</p>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="index.html"><span class="icon">🏠</span> الشاشة الرئيسية</a></li>
+            <li><a href="products.html"><span class="icon">📦</span> المنتجات</a></li>
+            <li><a href="customers.html"><span class="icon">👥</span> العملاء</a></li>
+            <li><a href="suppliers.html"><span class="icon">🏢</span> الموردين</a></li>
+            <li><a href="sales.html"><span class="icon">💰</span> المبيعات</a></li>
+            <li><a href="delivery-notes.html"><span class="icon">📋</span> أذون الصرف</a></li>
+            <li><a href="settlements.html"><span class="icon">✅</span> التسويات</a></li>
+            <li><a href="receipts.html"><span class="icon">💵</span> سندات القبض</a></li>
+            <li><a href="payments.html"><span class="icon">💸</span> سندات الصرف</a></li>
+            <li><a href="purchases.html"><span class="icon">🛒</span> المشتريات</a></li>
+            <li><a href="inventory.html"><span class="icon">📝</span> إدارة الجرد والمرتجعات</a></li>
+            <li><a href="assets.html"><span class="icon">🏛️</span> أصول الشركة</a></li>
+            <li><a href="reports.html"><span class="icon">📊</span> حساب الأرباح</a></li>
+            <li><a href="expenses.html"><span class="icon">💼</span> المصاريف التشغيلية</a></li>
+            <li><a href="backup.html"><span class="icon">💾</span> النسخ الاحتياطي</a></li>
+            <li><a href="action-logs.html"><span class="icon">📋</span> سجل الحركات</a></li>
+            <li><a href="users.html"><span class="icon">👤</span> إدارة المستخدمين والصلاحيات</a></li>
+            <li><a href="settings.html"><span class="icon">⚙️</span> الإعدادات</a></li>
+            <li><a href="about.html" class="active"><span class="icon">🧊</span> عن الشركة</a></li>
+            <li><a href="marketing.html"><span class="icon">📢</span> العرض التسويقي</a></li>
+            <li class="logout-item">
+                <button class="logout-btn" title="تسجيل الخروج">
+                    <img src="assets/logout-16.ico" alt="تسجيل الخروج" class="icon">
+                    <span>تسجيل الخروج</span>
+                </button>
+            </li>
+        </ul>
+        <div class="sidebar-footer">
+            <p class="copyright-text">© 2025 نظام أسيل — تم التطوير بواسطة المهندس محمد محسن. جميع الحقوق محفوظة.</p>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="content-header">
+            <h1>🧊 عن الشركة</h1>
+            <div class="header-actions">
+                <button class="btn btn-primary" id="printBtn" title="طباعة">
+                    <span>🖨️</span> طباعة
+                </button>
+                <button class="btn btn-success" id="savePdfBtn" title="حفظ كـ PDF">
+                    <span>📄</span> حفظ PDF
+                </button>
+            </div>
+        </div>
+
+        <div class="about-container">
+            <!-- Company Header -->
+            <div class="about-header">
+                <img src="assets/aseel_logo.svg" title="شركة اسيل " class="company-logo">
+                <h2 class="company-name">شركة أسيل للتوريدات الغذائية</h2>
+                <p class="company-description">
+                    نحن شركة متخصصة في تجارة وتوزيع المواد الغذائية المجمدة ونصف الجاهزة، مثل الستربس، البانية، لوازم الكريب والبيتزا، ومنتجات الدجاج والمأكولات السريعة بمختلف أنواعها.
+                </p>
+                <p class="company-description">
+                    منذ تأسيس الشركة، التزمنا بتقديم منتجات عالية الجودة تُحفظ وتُنقل بأحدث أنظمة التبريد لضمان وصولها إلى عملائنا بطزاجة تامة وجاهزية مثالية للاستخدام.
+                </p>
+                <p class="company-description">
+                    تتميز أسيل بقدرتها على الاستجابة السريعة لاحتياجات السوق وتقديم حلول توريد مرنة تناسب مختلف فئات العملاء، من المطاعم الكبرى إلى المشاريع الصغيرة وحتى الأفراد الراغبين في شراء كميات جملة.
+                </p>
+            </div>
+
+            <!-- Vision Section -->
+            <div class="about-section">
+                <div class="section-icon">🎯</div>
+                <div class="section-content">
+                    <h3 class="section-title">رؤيتنا</h3>
+                    <p class="section-text">
+                        أن نكون الشريك الأول والموثوق للمطاعم والكافيهات في مجال الأغذية المجمدة، من خلال الالتزام بالجودة والموثوقية وسرعة التنفيذ في كل خطوة من خطوات العمل.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Mission Section -->
+            <div class="about-section">
+                <div class="section-icon">💡</div>
+                <div class="section-content">
+                    <h3 class="section-title">رسالتنا</h3>
+                    <p class="section-text">
+                        توفير جميع احتياجات العملاء من الأغذية المجمدة ولوازم المأكولات السريعة بجودة ممتازة وأسعار تنافسية، مع ضمان حفظ المنتجات في أفضل ظروف التبريد والنظافة من لحظة استلامها وحتى تسليمها.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Activities Section -->
+            <div class="about-section">
+                <div class="section-icon">⚙️</div>
+                <div class="section-content">
+                    <h3 class="section-title">أنشطتنا</h3>
+                    <ul class="activities-list">
+                        <li>شراء وتوريد المواد الغذائية المجمدة ونصف الجاهزة من موردين معتمدين وموثوقين.</li>
+                        <li>تخزين المنتجات داخل ثلاجات مجهزة وفق معايير السلامة الغذائية.</li>
+                        <li>تجهيز وتسليم الطلبات للمطاعم والكافيهات والسوبرماركتات في أسرع وقت.</li>
+                        <li>تقديم خدمة التوصيل المبرد للحفاظ على جودة المنتج أثناء النقل.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Clients Section -->
+            <div class="about-section">
+                <div class="section-icon">🚚</div>
+                <div class="section-content">
+                    <h3 class="section-title">عملاؤنا</h3>
+                    <p class="section-text">
+                        نفخر بخدمة شريحة واسعة من العملاء تشمل:
+                    </p>
+                    <ul class="clients-list">
+                        <li>مطاعم الوجبات السريعة.</li>
+                        <li>الكافيهات ومحلات الكريب والبيتزا.</li>
+                        <li>السوبرماركتات والمطابخ المركزية.</li>
+                        <li>العملاء الأفراد الراغبين في شراء كميات جملة صغيرة.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Values Section -->
+            <div class="about-section">
+                <div class="section-icon">📦</div>
+                <div class="section-content">
+                    <h3 class="section-title">قيمنا</h3>
+                    <div class="values-grid">
+                        <div class="value-card">
+                            <div class="value-icon">✓</div>
+                            <h4 class="value-title">الجودة</h4>
+                            <p class="value-text">التزام تام بتقديم منتجات آمنة وطازجة.</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">🤝</div>
+                            <h4 class="value-title">الثقة</h4>
+                            <p class="value-text">بناء علاقات طويلة المدى قائمة على المصداقية والشفافية.</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">⚡</div>
+                            <h4 class="value-title">الخدمة</h4>
+                            <p class="value-text">سرعة التوصيل وجودة التخزين هما أساس رضا عملائنا.</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">📈</div>
+                            <h4 class="value-title">التطوير</h4>
+                            <p class="value-text">نسعى باستمرار إلى تحسين خدماتنا وتوسيع شبكة عملائنا وموردينا.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="scripts/header.js"></script>
+    <script src="scripts/sidebar.js"></script>
+    <script src="scripts/logout.js"></script>
+    <script src="scripts/about.js"></script>
+</body>
+</html>
+
